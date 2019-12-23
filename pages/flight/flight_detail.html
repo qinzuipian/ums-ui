@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>开始使用layui</title>
+  <link rel="stylesheet" href="../../resources/layui/css/layui.css">
+  <link rel="stylesheet" href="../../resources/css/base.css">
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=VzXPUBTBB9rsb4m0LIkhCqwdvx6A8c6e"></script>
+  <script type="text/javascript" src="http://api.map.baidu.com/library/LuShu/1.2/src/LuShu_min.js"></script>
+  <style>
+    #allmap {
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      margin: 0;
+      font-family: "微软雅黑";
+    }
+
+    .map {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    #me {
+      border-radius: 8px;
+      font-size: 12px;
+      padding: 0 8px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="view">
+    <form class="layui-form" action="">
+
+    </form>
+  </div>
+
+  <script type="text/template" id="demo">
+  <div class="layui-form-item">
+    <label class="layui-form-label">机主</label>
+    <div class="layui-input-inline">
+      <input type="text" name="applyUserName" readonly="readonly" value="{{applyUserName}}" required  lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">电话</label>
+    <div class="layui-input-inline">
+      <input type="text" name="telephone" value="{{telephone}}" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">机型</label>
+    <div class="layui-input-inline">
+      <input type="text" name="model" value="{{model}}" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">起飞地点</label>
+    <div class="layui-input-inline">
+      <input type="text" name="address" value="{{address}}" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+      <label class="layui-form-label">结束地点</label>
+      <div class="layui-input-inline">
+        <input type="text" name="endAddress" value="{{endAddress}}" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">半径(m)</label>
+    <div class="layui-input-inline">
+      <input type="text" name="radius" value="{{radius}}" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">飞行高度(m)</label>
+    <div class="layui-input-inline">
+      <input type="text" name="flightAltitude" value="{{flightAltitude}}" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">飞行时间</label>
+    <div class="layui-input-inline">
+      <input type="text"
+      id="startTime" 
+      name="startTime" 
+      value="{{startTime}}" 
+      required lay-verify="required" 
+      placeholder="" 
+      autocomplete="off" 
+      class="layui-input">
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+      <label class="layui-form-label">申请时间</label>
+      <div class="layui-input-inline">
+        <input type="text" 
+        id="applyTime"
+        name="applyTime" 
+        value="{{applyTime}}" 
+        required lay-verify="required"
+         placeholder=""
+          autocomplete="off" 
+          class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">结束时间</label>
+        <div class="layui-input-inline">
+          <input type="text" 
+          id="endTime"
+          name="endTime" 
+          value="{{endTime}}" 
+          required lay-verify="required"
+           placeholder="" 
+           autocomplete="off" 
+           class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+          <label class="layui-form-label">序列号</label>
+          <div class="layui-input-inline">
+            <input type="text" name="serialNum" value="{{serialNum}}" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">设备号</label>
+            <div class="layui-input-inline">
+              <input type="text" name="imei" value="{{imei}}" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+              <label class="layui-form-label">备注</label>
+              <div class="layui-input-inline">
+                  <textarea placeholder="" class="layui-textarea">{{remarks}}</textarea>
+              </div>
+            </div>
+</script>
+  <div class="map">
+    <!-- <label class="layui-form-label">查看位置：</label> -->
+    <button type="reset" class="layui-btn layui-btn-normal" id="me">点击查看位置</button>
+    <div id="allmap"></div>
+  </div>
+
+  <script src="../../resources/jquery/jquery-2.0.3.min.js"></script>
+  <script src="../../resources/template/template.js"></script>
+  <script src="../../resources/layui/layui.all.js"></script>
+  <script src="../../resources/common/ums-common.js"></script>
+  <!-- <script src="../uavcommon.js"></script> -->
+  <script src="./js/flight_detail.js"></script>
+
+  <script>
+
+    // 获取最新位置
+    var map = new BMap.Map("allmap"); // 创建Map实例
+    map.centerAndZoom(new BMap.Point(116.404, 39.915), 11); // 初始化地图,设置中心点坐标和地图级别
+    var point = new BMap.Point(sessionStorage.getItem('startlng'), sessionStorage.getItem('startlat'));
+    // var point = new BMap.Point(116.404, 39.915);
+    map.centerAndZoom(point, 12);
+    var marker = new BMap.Marker(point);  // 创建标注
+    map.addOverlay(marker);               // 将标注添加到地图中
+    document.getElementById('me').onclick = function () {
+     /*  var myGeo = new BMap.Geocoder();
+      var searchTxt = sessionStorage.getItem('address');
+      var Txtend = sessionStorage.getItem('endaddress');
+      myGeo.getPoint(searchTxt, function (point) {
+        var str = JSON.stringify(point.lng);
+        var str1 = JSON.stringify(point.lat);
+        sessionStorage.setItem('startlng', str);
+        sessionStorage.setItem('startlat', str1);
+        setPoint(point);
+      }, "全国");
+      myGeo.getPoint(Txtend, function (point) {
+        var str = JSON.stringify(point.lng);
+        var str1 = JSON.stringify(point.lat);
+        sessionStorage.setItem('endlng', str);
+        sessionStorage.setItem('endlat', str1);
+        setPoint(point);
+      }, "全国");
+      function setPoint(point) {
+        if (point) {
+          map.centerAndZoom(point, 12);
+          var marker = new BMap.Marker(point);
+        }
+      } */
+
+      var myP1 = new BMap.Point(sessionStorage.getItem('startlng'), sessionStorage.getItem('startlat'));      //起点
+      var myP2 = new BMap.Point(sessionStorage.getItem('endlng'), sessionStorage.getItem('endlat'));       //终点
+      var lushu;
+      // 实例化一个驾车导航用来生成路线
+      var drv = new BMap.DrivingRoute('北京', {
+        onSearchComplete: function (res) {
+          if (drv.getStatus() == BMAP_STATUS_SUCCESS) {
+            var plan = res.getPlan(0);
+            console.log(plan);
+            var arrPois = [];
+            for (var j = 0; j < plan.getNumRoutes(); j++) {
+              var route = plan.getRoute(j);
+              arrPois = arrPois.concat(route.getPath());
+              console.log(arrPois);
+            }
+            map.addOverlay(new BMap.Polyline(arrPois, { strokeColor: '#00f' }));
+            map.setViewport(arrPois);
+          }
+        }
+      });
+      drv.search(myP1, myP2);
+
+    }
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,122 @@
+body {
+				width: 100%;
+				padding: 0px;
+				margin: 0px;
+				position: fixed;
+			top: 0;
+			left: 0;
+						}
+			
+			#content {
+				margin: 0px auto;
+				font-family: "微软雅黑";
+			}
+			
+			.top {
+				height: 40px;
+				background-color: #0C9FEF;
+			}
+			
+			.regter {
+				font-size: 18px;
+				padding-left: 20px;
+				line-height: 40px;
+				color: white;
+				
+			}
+			
+			.img {
+				line-height: 35px;
+			}
+			
+			.nav {
+				border: 1px solid #E2E2E2;
+				margin: 0px auto;
+				height: 500px;
+				margin-top: 6%;
+				width: 80%;
+				text-align: center;
+			}
+			
+			.navv {
+				height: 90px;
+				background-color: #F0F0F0;
+				line-height: 90px;
+			}
+			
+			.text {
+				color: #11A3FC;
+				font-size: 20px;
+				height: 90px;
+				margin-top: 0px;
+			}
+			
+			h3.text span {
+				width: 100%;
+				display: block;
+				/*设置为块级元素会独占一行形成上下居中的效果*/
+				font-size: 23px;
+				color: #0C9FEF;
+				position: relative;
+				/*定位横线（当横线的父元素）*/
+				padding-top: 30px;
+			}
+			
+			.text span:before,
+			.text span:after {
+				
+				content: '';
+				/*CSS伪类用法*/
+				position: absolute;
+				/*定位背景横线的位置*/
+				top: 80%;
+				background: #0C9FEF;
+				/*宽和高做出来的背景横线*/
+				width: 9%;
+				height: 2px;
+				
+			}
+			
+			.text span:before {
+				
+				left: 35%;
+				/*调整背景横线的左右距离*/
+			}
+			
+			.text span:after {
+				right: 35%;
+			}
+			.nam{
+				margin: 0px auto;
+				padding-top: 10px;
+				width: 40%;
+				
+				
+			}
+			.font{
+				font-size: 14px;
+				color: #808080;
+			}
+			.na{
+				color: red;
+			}
+			.sure{
+				width: 95px;
+				cursor:pointer;
+				background-color: #0C9FEF;
+				border: none;
+				margin-right: 50px;
+				}
+		.cancel{
+			
+	       width: 95px;
+			color:#000;
+			background-color: white;
+			font-weight:normal;}
+			.gr{
+				padding-top: 20px;
+			}
+			.by{
+				background-color: #0C9FEF;
+				border: none;
+			}

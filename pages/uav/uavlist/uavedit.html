@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../resources/layui/css/layui.css">
+    <link rel="stylesheet" href="../../../resources/css/base.css">
+    <style>
+        #business span,
+        #model span,
+        #fastphone span,
+        #flynum span {
+            color: #f00;
+        }
+
+        .layui-form-item .layui-input-inline {
+            width: 492px;
+        }
+    </style>
+</head>
+
+<body>
+    <script id="demo" type="text/html">
+      <!--   <div class="layui-form-item">
+            <label class="layui-form-label">ID</label>
+    
+            <div class="layui-input-inline">
+                <input type="text"
+                        name="id"
+                        id="id"
+                       required lay-verify="required"
+                       placeholder="请输入内容"
+                       autocomplete="off"
+                       class="layui-input"
+                       value="{{id}}">
+            </div>
+        </div> -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">机主姓名</label>
+    
+            <div class="layui-input-inline">
+                <input type="text"
+                       name="ownerName"
+                       required lay-verify="required"
+                       placeholder="请输入机主姓名"
+                       autocomplete="off"
+                       class="layui-input"
+                       value="{{ownerName}}">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">联系电话</label>
+    
+            <div class="layui-input-inline">
+                <input type="text"
+                       name="contactPhone"
+                       id="contactPhone"
+                       required 
+                       lay-verify="phone"
+                       placeholder="请输入联系电话"
+                       autocomplete="off"
+                       class="layui-input"
+                       value="{{contactPhone}}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+                <label class="layui-form-label">制造商</label>
+        
+                <div class="layui-input-inline">
+                    <input
+                            type="text"
+                            name="manufacturer"
+                            id="manufacturer"
+                            required lay-verify="required"
+                            placeholder="请输入制造商"
+                            autocomplete="off"
+                            class="layui-input"
+                            value="{{manufacturer}}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                    <label class="layui-form-label">用途</label>
+            
+                    <div class="layui-input-inline">
+                        <input
+                                type="text"
+                                name="purpose"
+                                required lay-verify="required"
+                                placeholder="请输入用途"
+                                autocomplete="off"
+                                class="layui-input"
+                                value="{{purpose}}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                        <label class="layui-form-label">用户类型</label>
+                
+                        <div class="layui-input-inline">
+                               <!--  <select name="userType" lay-filter="ownerName">
+                                        <option value="">请选择用户类型</option>
+                                        <option value="1">个人用户</option>
+                                        <option value="2">企业用户</option>
+                                </select> -->
+                                <input 
+                                type="radio" 
+                                name="userType" 
+                                value="1" 
+                                title="个人用户"
+                                lay-filter="userType" 
+                                {{userType-0===1?'checked':''}}>
+                                <input 
+                                type="radio" 
+                                name="userType"
+                                 value="2"
+                                 title="企业用户(*)"
+                                 lay-filter="userType"
+                                 {{userType-0===2?'checked':''}}>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item" id="ownerId">
+                            <label class="layui-form-label">身份证号</label>
+                    
+                            <div class="layui-input-inline">
+                                <input type="text"
+                                       name="ownerId"
+                                       id="ownerId"
+                                       required 
+                                       placeholder="请输入身份证号"
+                                       autocomplete="off"
+                                       class="layui-input"
+                                       value="{{ownerId}}">
+                            </div>
+                        </div>
+                
+                    <div class="layui-form-item" id="driver">
+                        <label class="layui-form-label">驾驶证件号</label>
+                
+                        <div class="layui-input-inline">
+                            <input
+                                    type="text"
+                                    name="driverLicense" 
+                                    placeholder="请输入驾驶证件号"
+                                    autocomplete="off"
+                                    class="layui-input"
+                                    value="{{driverLicense}}">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" id="certif">
+                        <label class="layui-form-label">合格证等级</label>
+                
+                        <div class="layui-input-inline">
+                            <input
+                                    type="text"
+                                    name="certificateGrade"
+                                    placeholder="请输入合格证等级"
+                                    autocomplete="off"
+                                    class="layui-input"
+                                    value="{{certificateGrade}}">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" id="issus">
+                        <label class="layui-form-label">发证机构</label>
+                
+                        <div class="layui-input-inline">
+                            <input
+                                    type="text"
+                                    name="issuingAgency"
+                                    placeholder="请输入发证机构"
+                                    autocomplete="off"
+                                    class="layui-input"
+                                    value="{{issuingAgency}}">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" id="wei">
+                        <label class="layui-form-label">飞机重量(kg)</label>
+                        <div class="layui-input-inline">
+                            <input
+                                    type="text"
+                                    name="weight"
+                                    placeholder="请输入飞机重量"
+                                    autocomplete="off"
+                                    class="layui-input"
+                                    value="{{weight}}">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" id="peoplemodel">
+                        <label class="layui-form-label">飞机类型</label>  
+                        <div class="layui-input-inline">
+                              <select name="modelType" lay-filter="modelType">
+                                        <option value="">请选择飞机类型</option>
+                                        <option value="微型无人机">微型无人机</option>
+                                        <option value="小型无人机">小型无人机</option>
+                                        <option value="中型无人机">中型无人机</option>
+                                        <option value="大型无人机">大型无人机</option>
+                                </select>
+                               <!--  <input 
+                                type="radio" 
+                                name="modelType" 
+                                value="微型无人机" 
+                                title="微型无人机"
+                                lay-filter="modelType">
+                                <input 
+                                type="radio" 
+                                name="modelType"
+                                 value="小型无人机"
+                                 title="小型无人机"
+                                 lay-filter="modelType">
+                                 <input 
+                                 type="radio" 
+                                 name="modelType"
+                                  value="中型无人机"
+                                  title="中型无人机"
+                                  lay-filter="modelType">
+                                  <input 
+                                  type="radio" 
+                                  name="modelType"
+                                   value="大型无人机"
+                                   title="大型无人机"
+                                   lay-filter="modelType"> -->
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item" id="model">
+                        <label class="layui-form-label"><span>*</span>&nbsp;飞机类型</label>
+                
+                        <div class="layui-input-inline">
+                            <input
+                                    type="text"
+                                    name="modelType"
+                                    required 
+                                    placeholder="请输入飞机类型"
+                                    autocomplete="off"
+                                    class="layui-input"
+                                    value="{{modelType}}">
+                        </div>
+                    </div>
+                    
+              
+       
+        <div class="layui-form-item" id="business">
+            <label class="layui-form-label"><span>*</span>&nbsp;工商代码</label>
+    
+            <div class="layui-input-inline">
+                <input type="text"
+                       name="companyId"
+                       id="companyId"
+                       placeholder="请输入工商代码"
+                       autocomplete="off"
+                       class="layui-input"
+                       value="{{companyId}}">
+            </div>
+        </div>
+
+        <div class="layui-form-item" id="fastphone">
+            <label class="layui-form-label"><span>*</span>&nbsp;紧急电话</label>
+    
+            <div class="layui-input-inline">
+                <input type="text"
+                       name="emergencyContactNumber"
+                       id="emergencyContactNumber"
+                       required 
+                       placeholder="请输入紧急电话"
+                       autocomplete="off"
+                       class="layui-input"
+                       value="{{emergencyContactNumber}}">
+            </div>
+        </div>
+       
+       
+       
+      <!--   <div class="layui-form-item">
+            <label class="layui-form-label">用户名</label>
+    
+            <div class="layui-input-inline">
+                <input type="text"
+                       name="imei"
+                       id="imei"
+                       required lay-verify="required"
+                       placeholder="请输入内容"
+                       autocomplete="off"
+                       class="layui-input"
+                       value="{{imei}}">
+            </div>
+        </div> -->
+        
+       <!--  <div class="layui-form-item">
+            <label class="layui-form-label">产品型号</label>
+    
+            <div class="layui-input-inline">
+                <input type="text"
+                       name="modelType"
+                       id="modelType"
+                       required lay-verify="required"
+                       placeholder="请输入内容"
+                       autocomplete="off"
+                       class="layui-input"
+                       value="{{modelType}}">
+            </div>
+        </div> -->
+        <div class="layui-form-item" id="flynum">
+            <label class="layui-form-label"><span>*</span>&nbsp;飞机数量</label>
+    
+            <div class="layui-input-inline">
+                <input type="text"
+                       name="uavNum"
+                       id="uavNum"
+                       required 
+                       placeholder="请输入飞机数量"
+                       autocomplete="off"
+                       class="layui-input"
+                       value="{{uavNum}}">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+                <label class="layui-form-label">设备号</label>
+        
+                <div class="layui-input-inline">
+                    <input type="text"
+                           name="deviceName"
+                           required lay-verify="required"
+                           placeholder="请输入设备号"
+                           autocomplete="off"
+                           class="layui-input"
+                           value="{{deviceName}}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                    <label class="layui-form-label">无人机名称</label>
+            
+                    <div class="layui-input-inline">
+        
+                            <select name="uavName" lay-filter="uavName">
+                                    <option value="">请选择无人机类型</option>
+                            </select>
+                    </div>
+                </div>
+       
+        <div class="layui-form-item" id="company">
+            <label class="layui-form-label">公司名称</label>
+    
+            <div class="layui-input-inline">
+                <input type="text"
+                       name="companyName"
+                       id="companyName"
+                       required 
+                       lay-verify="required"
+                       placeholder="请输入公司名称"
+                       autocomplete="off"
+                       class="layui-input"
+                       value="{{companyName}}">
+            </div>
+        </div>
+        <div class="layui-form-item" id="legal">
+            <label class="layui-form-label">法人代表</label>
+    
+            <div class="layui-input-inline">
+                <input type="text"
+                       name="legalPerson"
+                       id="legalPerson"
+                       required 
+                       lay-verify="required"
+                       placeholder="请输入法人代表"
+                       autocomplete="off"
+                       class="layui-input"
+                       value="{{legalPerson}}">
+            </div>
+        </div>
+       
+       <!--  <div class="layui-form-item">
+                <label class="layui-form-label">登记时间</label>
+        
+                <div class="layui-input-inline">
+                    <input type="text"
+                           name="registerDate"
+                           id="registerDate"
+                           required
+                            lay-verify="required"
+                           placeholder="请输入内容"
+                           autocomplete="off"
+                           class="layui-input"
+                           value="{{registerDate}}">
+                </div>
+            </div> -->
+        <input type="hidden" name="createId" value="{{createId}}">
+        <input type="hidden" name="createName" value="{{createName}}">
+        <input type="hidden" name="createDate" value="{{createDate}}">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn"  lay-filter="formDemo" lay-submit="">
+                    确认
+                </button>
+                <button type="reset" class="layui-btn layui-btn-primary cancel">取消</button>
+            </div>
+        </div>
+    </script>
+
+    <div class="view">
+        <form class="layui-form" action="" id="formId">
+
+        </form>
+    </div>
+</body>
+<script src="../../../resources/layui/layui.js"></script>
+<script src="../../../resources/jquery/jquery-2.0.3.min.js"></script>
+<script src="../../../resources/template/template.js"></script>
+<script src="../../../resources/common/ums-common.js"></script>
+<!-- <script src="js/uavlook.js"></script> -->
+<script src="js/uavedit.js"></script>
+
+</html>

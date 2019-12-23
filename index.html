@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>无人机登录</title>
+    <link rel="stylesheet" href="resources/layui/css/layui.css">
+    <link rel="stylesheet" href="resources/frame/static/css/style.css">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="icon" href="./resources/frame/static/image/JH.png">
+    <style>
+        .login-main header {
+            margin-top: 300px;
+        }
+
+        .login-main header .second {
+            font-size: 44px;
+        }
+
+        .login-main .form-horizontal .gain,
+        .login-main .form-horizontal .regain,
+        .login-main .form-horizontal .gainbtn {
+            width: 150px;
+            height: 36px;
+            padding-left: 10px;
+            border-radius: 2px;
+            border: 1px solid #fff;
+        }
+
+        .login-main .form-horizontal .regain {
+            background: transparent;
+            border: 0;
+            font-size: 22px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .login-main .form-horizontal .gainbtn {
+            float: right;
+            border: 0;
+        }
+    </style>
+</head>
+
+<body class="body">
+
+
+    <div class="login-main">
+        <header class="layui-elip">
+            <p>桂林市公安局</p>
+            <p class="second">低慢小航空器管控平台</p>
+        </header>
+        <form class="form-horizontal" action="" id="formId">
+            <div class="layui-input-inline">
+                <input type="text" name="telephone" id="account" value="桂林公安" lay-verify="required" placeholder="用户账号" autocomplete="off"
+                    class="layui-input">
+            </div>
+            <div class="layui-input-inline">
+                <input type="password" name="password" id="password" lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+            </div>
+
+            <div class="layui-input-inline">
+                <input type="text" class="gain" id="gain" lay-verify="required" placeholder="输入验证码" autocomplete="off" class="layui-input">
+                <input type="text" id="regain" class="regain" readonly="readonly">
+                <input type="button" class="layui-btn gainbtn" id="btn" value="获取验证码">
+            </div>
+            <div class="layui-input-inline login-btn">
+                <button type="submit" class="layui-btn">登录</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="resources/frame/layui/layui.all.js"></script>
+    <script src="resources/jquery/jquery-2.0.3.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="resources/common/ums-common.js"></script>
+    <script type="text/javascript">
+
+        //点击发送验证码按钮，进行倒计时
+        /*  var countdown = 80;
+         function settime(val) {
+             if (countdown == 0) {
+                 $("#btn").attr("disabled", false);
+                 $("#btn").attr("value", "获取验证码");
+                 countdown = 60;
+                 return false;
+             } else {
+                 $("#btn").attr("disabled", true);
+                 $("#btn").attr("value", "重新发送(" + countdown + ")");
+                 countdown--;
+             }
+             setTimeout(function () {
+                 settime(val)
+             }, 1000)
+         } */
+
+
+        layui.use(['form', 'jquery'], function () {
+
+            // 操作对象
+            var form = layui.form
+                , $ = layui.jquery;
+
+            $('.gainbtn').click(function () {
+                $('.gainbtn').attr("value", "重新发送")
+                $.ajax({
+                    url: UmsCommon.commonUrl() + "sys-user/obtainVerifyCode",
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        userName: $("#account").val(),
+                        flag: 0
+                    },
+                    success: function (info) {
+                        if (info.status == 203) {
+                            layer.msg(info.message);
+                            document.getElementById('regain').value = null;
+                        } else {
+                            console.log(info.data);
+                            document.getElementById('regain').value = info.data;
+                        }
+
+                    }
+                })
+
+            })
+
+       
+            $('#formId').on('submit', function () {
+                 if($('#password').val()==''){
+                    layer.msg('密码不能为空');
+                }else if ($('#gain').val() == '') {
+                    layer.msg('验证码不能为空');
+                } 
+                else{ 
+                    $.ajax({
+                        url: UmsCommon.commonUrl() + "sys-user/login",
+                        type: 'post',
+                        dataType: 'json',
+                        data: {
+                            userName: $("#account").val(),
+                            password: $("#password").val(),
+                            verifyCode: $("#gain").val(),
+                            // rnum: 1,
+                            token: 123
+                        },
+                        success: function (info) {
+
+                            if (info.status == 200 && $('#gain').val() == $('#regain').val()) {
+                                localStorage.setItem('token', info.data.token);
+                                localStorage.setItem('userName', info.data.userName);
+                                localStorage.setItem('userId', info.data.userId);
+                                $(location).attr('href', './main.html');
+                            } else if (info.status == 203) {
+                                console.log(info.message);
+                                layer.msg(info.message);
+                            }
+                        }
+                    })
+                }
+                    return false;
+            })
+
+
+
+
+        });
+
+    </script>
+</body>
+
+</html>

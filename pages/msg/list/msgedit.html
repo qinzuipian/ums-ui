@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>开始使用layui</title>
+  <link rel="stylesheet" href="../../../resources/layui/css/layui.css">
+  <link rel="stylesheet" href="../../../resources/css/base.css">
+</head>
+
+
+<body>
+
+
+  <div class="view">
+    <form class="layui-form" action="">
+
+    </form>
+  </div>
+
+  <script type="text/template" id="demo">
+  <div class="layui-form-item">
+    <label class="layui-form-label">消息标题</label>
+    <div class="layui-input-inline">
+      <input type="text"
+       name="title" 
+       value="{{title}}" 
+       required  
+       lay-verify="required"
+        placeholder="请输入消息标题"
+         autocomplete="off" 
+         class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">消息类型</label>
+    <div class="layui-input-block">
+      <input 
+      type="radio" 
+      name="msgType" 
+      value="1" 
+      title="空域信息" 
+      checked=""
+      {{msgType-0===1?'checked':''}}>
+      <input 
+      type="radio" 
+      name="msgType"
+       value="2"
+       title="气象数据"
+       {{msgType-0===2?'checked':''}}>
+       <input 
+       type="radio" 
+       name="msgType" 
+       value="3" 
+       title="航迹信息" 
+       checked=""
+       {{msgType-0===3?'checked':''}}>
+       <input 
+       type="radio" 
+       name="msgType" 
+       value="4" 
+       title="政策法规" 
+       checked=""
+       {{msgType-0===4?'checked':''}}>
+       <input 
+       type="radio" 
+       name="msgType" 
+       value="5" 
+       title="航图" 
+       checked=""
+       {{msgType-0===5?'checked':''}}>
+       <input 
+       type="radio" 
+       name="msgType" 
+       value="6" 
+       title="手册" 
+       checked=""
+       {{msgType-0===6?'checked':''}}>  
+  </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">消息内容</label>
+    <div class="layui-input-inline">
+        <textarea id="mas"  name="content"  style="display: none">{{content}}</textarea>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">发布时间</label>
+    <div class="layui-input-inline">
+      <input type="text" 
+      name="publishTime" 
+      value="{{publishTime}}" 
+      required 
+      lay-verify="required"
+      placeholder="请输入发布时间" 
+      autocomplete="off" 
+      class="layui-input"
+      id="time">
+    </div>
+  </div>
+  <input type="hidden" name="createId" value="{{createId}}">
+  <input type="hidden" name="createName" value="{{createName}}">
+  <input type="hidden" name="createDate" value="{{createDate}}">
+  <div class="layui-form-item">
+      <div class="layui-input-block">
+        <button class="layui-btn" lay-submit lay-filter="formDemo">确认</button>
+        <button type="reset" class="layui-btn layui-btn-primary cancel">取消</button>
+      </div>
+  </div>
+  
+</script>
+
+  <script src="../../../resources/jquery/jquery-2.0.3.min.js"></script>
+  <script src="../../../resources/layui/layui.all.js"></script>
+  <script src="../../../resources/template/template.js"></script>
+  <script src="../../../resources/common/ums-common.js"></script>
+  <!-- <script src="js/board.js"></script> -->
+  <script src="js/msgedit.js"></script>
+
+</body>
+
+</html>

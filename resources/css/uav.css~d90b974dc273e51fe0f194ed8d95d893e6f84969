@@ -1,0 +1,28 @@
+header {
+    height: 30px;
+    line-height: 22px;
+    background-color: #1E9FFF;
+    padding :8px;
+}
+header span {
+    color: #fff;
+    font-size: 16px;
+    margin-left: 5px;
+    font-weight: 700;
+}
+.main {
+    height: 40px;
+    background-color: #eee;
+    padding: 20px;
+}
+.main .date {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.main .layui-input {
+    height: 36px;
+}
+.layui-table, .layui-table-view {
+    margin: 0;
+}

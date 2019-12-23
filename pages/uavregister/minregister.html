@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录注册</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="http://www.helloweba.com/demo/css/demo.css"> -->
+    <link rel="stylesheet" href="../../resources/layui/css/layui.css">
+    <!-- <link rel="stylesheet" href="../../resources/css/dropzone.css"> -->
+    <link rel="stylesheet" href="../../resources/css/base.css">
+    <link rel="stylesheet" href="../../resources/css/uav.css">
+    <link rel="stylesheet" href="css/uavregister.css">
+</head>
+
+<body>
+
+
+<script id="demo" type="text/html">
+    <div class="form-group gr" id="cellphone">
+        <label for="firstname" class="col-sm-3 control-label">
+            <i class="star">*</i>&nbsp;&nbsp;联系电话</label>
+        <div class="col-md-8">
+            <input type="text" class="form-control" value="{{contactPhone}}" name="contactPhone"
+                   placeholder="请输入联系电话"
+                   id="phonever"/>
+            <span></span>
+        </div>
+    </div>
+    <div class="form-group gr" id="driver">
+        <label for="companyName" class="col-sm-3 control-label">驾驶证件号</label>
+        <div class="col-md-8">
+            <input type="text" class="form-control" value="{{driverLicense}}" name="driverLicense"
+                   id="driverLicense"
+                   placeholder="请输入驾驶证件号"/>
+        </div>
+    </div>
+
+    <div class="form-group gr" id="certif">
+        <label for="companyName" class="col-sm-3 control-label">合格证等级</label>
+        <div class="col-md-8">
+            <input type="text" class="form-control" value="{{certificateGrade}}" name="certificateGrade"
+                   id="certificateGrade" placeholder="请输入合格证等级"/>
+        </div>
+    </div>
+    <div class="form-group gr" id="issus">
+        <label for="companyName" class="col-sm-3 control-label">发证机构</label>
+        <div class="col-md-8">
+            <input type="text" class="form-control" value="{{issuingAgency}}" name="issuingAgency"
+                   id="issuingAgency"
+                   placeholder="请输入发证机构"/>
+        </div>
+    </div>
+    <div class="form-group gr" id="wei">
+        <label for="companyName" class="col-sm-3 control-label">飞机重量(kg)</label>
+        <div class="col-md-8">
+            <input type="text" class="form-control" value="{{weight}}" name="weight" id="weight"
+                   placeholder="请输入飞机重量"/>
+        </div>
+    </div>
+    <div class="form-group gr" id="peoplemodel">
+        <label for="chname" class="col-sm-3 control-label">飞机类型</label>
+        <div class="col-md-8">
+            <select class="form-control" id="modelType" name="modelType" value="{{modelType}}">
+                <option value="">请选择飞机类型</option>
+                <option value="微型无人机">微型无人机</option>
+                <option value="小型无人机">小型无人机</option>
+                <option value="中型无人机">中型无人机</option>
+                <option value="大型无人机">大型无人机</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group gr" id="model" style="display:none;">
+        <label for="companyName" class="col-sm-3 control-label">飞机类型</label>
+        <div class="col-md-8">
+            <input type="text" class="form-control" name="modelType" value="{{modelType}}" id="flymodel"
+                   placeholder="请输入机型"/>
+        </div>
+    </div>
+    <div class="form-group gr" id="orderid">
+        <label for="companyName" class="col-sm-3 control-label">序列号</label>
+        <div class="col-md-8">
+            <input type="text" class="form-control" id="serialNum" value="{{serialNum}}" name="serialNum"
+                   placeholder="请输入序列号"/>
+        </div>
+    </div>
+    <div class="form-group gr">
+        <label for="firstname" class="col-sm-3 control-label">用途</label>
+        <div class="col-md-8">
+            <input type="text" class="form-control" id="purpose" name="purpose" value="{{purpose}}"
+                   placeholder="请输入用途"/>
+        </div>
+    </div>
+    <div class="form-group gr">
+        <label for="firstname" class="col-sm-3 control-label">制造商</label>
+        <div class="col-md-8">
+            <input type="text" class="form-control" id="manufacturer" value="{{manufacturer}}" name="manufacturer"
+                   placeholder="请输入制造商"/>
+        </div>
+    </div>
+    <div class="form-group gr">
+        <label for="firstname" class="col-sm-3 control-label">设备号</label>
+        <div class="col-md-8">
+            <input type="text" class="form-control" id="deviceName" value="{{deviceName}}" name="deviceName" placeholder="请输入设备号">
+        </div>
+    </div>
+    <div class="form-group gr" style="display:none" id="flynum">
+        <label for="companyName" class="col-sm-3 control-label">飞机数量</label>
+        <div class="col-md-8">
+            <input type="text" class="form-control" name="uavNum" value="{{uavNum}}" id="uavNum"
+                   placeholder="请输入飞机数量"/>
+        </div>
+    </div>
+    <div class="form-group gr" style="display:none" id="order">
+        <label for="companyName" class="col-sm-3 control-label">序列号</label>
+        <div class="col-md-8">
+            <textarea class="form-control" name="serialNum" id="flyserialNum" cols="30" rows="6"></textarea>
+        </div>
+    </div>
+    <div class="form-group gr" id="phone" style="display:none">
+        <label for="firstname" class="col-sm-3 control-label">
+            <i class="star">*</i>&nbsp;&nbsp;紧急电话</label>
+        <div class="col-md-8">
+            <input type="text" class="form-control" value="{{emergencyContactNumber}}" id="emergencyContactNumber"
+                   name="emergencyContactNumber" placeholder="请输入联系电话"/>
+            <span></span>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary sure">提交</button>
+    <button type="button" class="btn btn-default cancel">取消</button>
+
+</script>
+<!--头部-->
+<div class="top">
+    <i class="layui-icon" style="font-size: 28px; color: #fff;">&#xe609;</i>
+    <span>无人机的注册</span>
+    <i class="layui-icon right refres" style="font-size: 26px; color: #fff;">&#x1002;</i>
+
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <!-- 无人机注册页面 -->
+        <form class="form-horizontal" action="../uav/uavmin.html" id="formId">
+            <div class="nav">
+                <div class="uav">
+                    <h3 class="text">
+                        <span>无人机注册</span>
+                        <a class="remark">备注：
+                            <label class="na">*</label>为必填内容</a>
+                    </h3>
+                </div>
+                <div class="nam">
+                    <input type="hidden" name="createId" value="1">
+                    <input type="hidden" name="createName" value="admin">
+                    <input type="hidden" name="createDate" value="newDate()">
+                    <input type="hidden" name="registerDate" value="newDate()">
+                    <div class="form-group gr">
+                        <label for="chname" class="col-sm-3 control-label">用户类型</label>
+                        <div class="col-md-8">
+                            <select class="form-control" id="userType" name="userType">
+                                <option value="">请选择用户类型</option>
+                                <option value="1">个人用户</option>
+                                <option value="2">企业用户</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group gr">
+                        <label for="ownerName" class="col-sm-3 control-label">
+                            <i class="star">*</i>&nbsp;&nbsp;机主姓名</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="ownerName" name="ownerName"
+                                   placeholder="请输入名称"/>
+                        </div>
+                    </div>
+                    <div id="vm">
+
+
+                        <div class="form-group gr" id="ownerId">
+                            <label for="firstname" class="col-sm-3 control-label">
+                                <i class="star">*</i>&nbsp;&nbsp;身份证号</label>
+                            <div class="col-md-8">
+                                <!--<input type="text" class="form-control" id="identity" name="ownerId"-->
+                                <!--placeholder="请输入身份证号"/>-->
+                                <select name="ownerId" id="identity" class="form-control" v-model="idCard">
+                                    <option v-for="it in idCardList" :value="it">{{it}}</option>
+                                </select>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="form-group gr" id="business" style="display:none">
+                            <label for="firstname" class="col-sm-3 control-label">
+                                <i class="star">*</i>&nbsp;&nbsp;工商代码</label>
+                            <div class="col-md-8">
+                                <!--<input type="text" class="form-control" id="companyId" name="companyId"-->
+                                       <!--placeholder="请输入工商代码"/>-->
+                                <select name="ownerId" id="identity" class="form-control" v-model="idCard">
+                                    <option v-for="it in idCardList" :value="it">{{it}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="form-group gr" id="business" style="display:none">
+                        <label for="firstname" class="col-sm-3 control-label">
+                            <i class="star">*</i>&nbsp;&nbsp;工商代码</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="companyId" name="companyId" placeholder="请输入工商代码" />
+                        </div>
+                    </div> -->
+                    <input type="button" class="btn btn-primary sure" value="信息获取" id="open">
+                    <div class="uavmain">
+
+                    </div>
+
+                </div>
+            </div>
+    </div>
+    </form>
+
+</div>
+</div>
+
+
+</body>
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="../../resources/layui/layui.all.js"></script>
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../../resources/template/template.js"></script>
+<script src="../../resources/common/ums-common.js"></script>
+<script src="../axios.js"></script>
+<script src="../../resources/vue.js"></script>
+<script src="js/minregister.js"></script>
+
+</html>

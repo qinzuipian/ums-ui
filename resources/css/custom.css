@@ -1,0 +1,87 @@
+#mytab {
+    width: 100%;
+}
+
+/* Table Head */
+
+#mytab thead th {
+    background-color: #F5F5F5;
+    color: #333333;
+    border-bottom-width: 0;
+    font-size: 14px;
+}
+
+/* Column Style */
+
+#mytab td {
+    color: #333333;
+}
+
+#mytab tr td {
+    width: 200px;
+    text-align: center;
+    height: 40px;
+}
+
+/* Heading and Column Style */
+
+#mytab tr,
+#mytab th {
+    height: 40px;
+    text-align: center;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #DDDDDD;
+}
+
+/* Padding and font style */
+
+#mytab td,
+#mytab th {
+    font-size: 12px;
+    font-family: Verdana;
+}
+
+.btnua {
+    height: 30px;
+    width: 60px;
+    background-color: #0C9FEF;
+    border: none;
+}
+
+.btnua:hover {
+    background-color: #3EB5F4;
+}
+
+.btnu {
+    height: 30px;
+    width: 60px;
+}
+
+.btnu:hover {
+    background-color: #D9544F;
+    color: white;
+    border: none;
+}
+
+.btnuaa:hover {
+    background-color: #3EB5F4;
+}
+
+.btnuaa {
+    background-color: #0C9FEF;
+    border: none;
+}
+
+.re {
+    margin-top: 10px;
+}
+
+.labels {
+    text-align: center;
+}
+
+.panel-margin {
+    margin-top: 10px;
+    margin-bottom: 0;
+}

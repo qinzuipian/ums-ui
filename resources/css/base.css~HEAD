@@ -1,0 +1,18 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.demo-carousel {
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}

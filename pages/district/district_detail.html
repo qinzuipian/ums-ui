@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>开始使用layui</title>
+  <link rel="stylesheet" href="../../resources/layui/css/layui.css">
+  <link rel="stylesheet" href="../../resources/css/base.css">
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=VzXPUBTBB9rsb4m0LIkhCqwdvx6A8c6e"></script>
+  <style>
+    #allmap {
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      margin: 0;
+      font-family: "微软雅黑";
+    }
+
+    .map {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    #me {
+      border-radius: 8px;
+      font-size: 12px;
+      padding: 0 8px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="view">
+    <form class="layui-form" action="">
+
+    </form>
+  </div>
+
+  <script type="text/template" id="demo">
+  <div class="layui-form-item">
+    <label class="layui-form-label">围栏ID</label>
+    <div class="layui-input-inline">
+      <input type="text" name="id" value="{{id}}" required  lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">区域名称</label>
+    <div class="layui-input-inline">
+      <input type="text" name="districtName" value="{{districtName}}" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">围栏类型</label>
+    <div class="layui-input-inline">
+      <input type="text"
+       name="fencyType" 
+       value="{{fencyType-0===1?'多边形':'圆形'}}" 
+       required 
+       lay-verify="required" 
+       placeholder=""
+       autocomplete="off" 
+       class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">区域类别</label>
+    <div class="layui-input-inline">
+      <input type="text" 
+      name="districtType" 
+      value="{{districtType-0===1?'危险区域':(districtType-0===2?"限制区域":"主要障碍")}}" 
+      required 
+      lay-verify="required" 
+      placeholder="" 
+      autocomplete="off" 
+      class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">创建人名称</label>
+    <div class="layui-input-inline">
+      <input type="text" name="createName" value="{{createName}}" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">创建时间</label>
+    <div class="layui-input-inline">
+      <input type="text"
+      id="createDate"
+       name="createDate" 
+       value="{{createDate}}" 
+       required lay-verify="required" 
+       placeholder=""
+        autocomplete="off" 
+        class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">更新时间</label>
+    <div class="layui-input-inline">
+      <input type="text" 
+      id="modifyDate"
+      name="modifyDate" 
+      value="{{modifyDate}}"
+       required lay-verify="required" 
+       placeholder="" 
+       autocomplete="off" 
+       class="layui-input">
+    </div>
+  </div>
+
+</script>
+  <div class="map">
+    <!-- <label class="layui-form-label">查看位置：</label> -->
+    <!-- <button type="reset" class="layui-btn layui-btn-normal" id="me">点击查看位置</button> -->
+    <div id="allmap"></div>
+  </div>
+
+
+  <script src="../../resources/jquery/jquery-2.0.3.min.js"></script>
+  <script src="../../resources/template/template.js"></script>
+  <script src="../../resources/layui/layui.js"></script>
+  <script src="../../resources/common/ums-common.js"></script>
+  <script src="./js/district_detail.js"></script>
+
+
+  <script>
+    $(function () {
+      $.ajax({
+        url: UmsCommon.commonUrl() + 'historyalarm/circlefenceDetail',
+        type: "post",
+        data: {
+          id: localStorage.getItem('fenceId'),
+          token: 123
+        },
+        dataType: 'json',
+        success: function (info) {
+          if (info.status == 200) {
+            // console.log(info.data.radius);
+            sessionStorage.setItem('radius', info.data.radius);
+            sessionStorage.setItem('lat', info.data.latitude);
+            sessionStorage.setItem('log', info.data.longitude);
+
+            // 获取最新位置
+            var map = new BMap.Map("allmap"); // 创建Map实例
+            map.centerAndZoom(new BMap.Point(116.404, 39.915), 11); // 初始化地图,设置中心点坐标和地图级别
+            var point = new BMap.Point(sessionStorage.getItem('log'), sessionStorage.getItem('lat'));
+            // var point = new BMap.Point(116.404, 39.915);
+            map.centerAndZoom(point, 12);
+            map.setZoom(12);   
+            map.enableScrollWheelZoom(true);
+            var marker = new BMap.Marker(point);  // 创建标注
+            var circle = new BMap.Circle(point, sessionStorage.getItem('radius'), {
+                    strokeColor: "red",
+                    fillColor: "red",
+                    fillOpacity: 0.8,
+                    strokeWeight: 2,
+                    strokeOpacity: 0.8
+                });
+
+                map.addOverlay(circle);  //创建圆形
+            // document.getElementById('me').onclick = function () { }
+          }
+
+        }
+      })
+    })
+
+
+
+  </script>
+</body>
+
+</html>

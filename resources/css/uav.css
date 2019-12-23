@@ -1,0 +1,68 @@
+header {
+    height: 30px;
+    line-height: 22px;
+    background-color: #1E9FFF;
+    padding :8px;
+}
+header span {
+    color: #fff;
+    font-size: 16px;
+    margin-left: 5px;
+    font-weight: 700;
+}
+.refres:hover {
+    cursor: pointer;
+    
+}
+.main {
+    height: 40px;
+    background-color: #eee;
+    padding: 20px;
+}
+.main .date {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.main .layui-input {
+    height: 36px;
+}
+.layui-table, .layui-table-view {
+    margin: 0;
+}
+.layui-nav {
+    position: relative;
+}
+.logo {
+position: absolute;
+width: 154px;
+bottom: 2px;
+left: 50%;
+margin-left: -72px;
+}
+.logo img {
+    margin-right: 8px;
+   margin-bottom: 8px;
+   width: 146px;
+   vertical-align:bottom;
+}
+.logo span {
+    color: #aaa;
+    font-size: 16px;
+
+}
+.logo p {
+    font-size: 12px;
+    color: #ce000d;
+}
+.layui-layout-admin .layui-body {
+    bottom:0;
+}
+.select {
+    width: 182px;
+    height: 32px;
+    border: none;
+}
+.layui-col-xs1 {
+    width: 12.333333%;
+}

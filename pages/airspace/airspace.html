@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>空域划设管理</title>
+
+  <link rel="stylesheet" href="../../resources/layui/css/layui.css">
+
+  <link rel="stylesheet" href="../../resources/css/base.css">
+  <link rel="stylesheet" href="../../resources/css/uav.css">
+
+
+</head>
+
+<body>
+
+  <!--头部-->
+  <header>
+    <i class="layui-icon" style="font-size: 30px; color: #fff;">&#xe609;</i>
+    <span>空域划设管理</span>
+    <i class="layui-icon right refres" style="font-size: 26px; color: #fff;">&#x1002;</i>
+  </header>
+
+  <!--面板部分-->
+  <div class="main">
+    <div class="layui-row">
+      <div class="layui-col-xs1">
+        <div class="grid-demo">
+          <button class="layui-btn layui-btn-sm layui-btn-normal left" id="increase">添加围栏</button>
+        </div>
+      </div>
+      <div class="layui-col-xs3">
+        <div class="grid-demo grid-demo-bg1">
+          <span class="date">空域名称:</span>
+          <div class="layui-inline">
+            <input type="text" class="layui-input" id="serialNo">
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-xs3">
+        <div class="grid-demo grid-demo-bg1">
+          <span class="date">城市名称：</span>
+          <div class="layui-inline">
+            <input type="text" class="layui-input" id="belongCityName">
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-xs3">
+        <div class="grid-demo grid-demo-bg1">
+          <span class="date">开始时间:</span>
+          <div class="layui-inline">
+            <input type="text" class="layui-input" id="modifyDate">
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-xs1">
+        <div class="grid-demo">
+          <button class="layui-btn layui-btn-sm layui-btn-normal right" data-type="reload" id="Record">记录查询</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <script type="text/html" id="stateTpl">
+        <input type="checkbox" name="isOpen" lay-skin="switch" disabled lay-text="开启|关闭" {{ d.state == 1 ? 'checked' : '' }}>
+</script> -->
+
+
+  <!--表格数据展示-->
+  <table class="layui-hide" id="test" lay-filter="demo"></table>
+
+  <script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+  <script src="../../resources/jquery/jquery-2.0.3.min.js"></script>
+  <script src="../../resources/layui/layui.all.js"></script>
+  <script src="../../resources/common/ums-common.js"></script>
+  <script type="text/javascript" src="./js/airspace.js"></script>
+</body>
+
+</html>

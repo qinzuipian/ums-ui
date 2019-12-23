@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>无人机管理</title>
+    <link rel="stylesheet" href="resources/frame/layui/css/layui.css">
+    <link rel="stylesheet" href="./resources/frame/static/css/style.css">
+    <link rel="icon" href="./resources/frame/static/image/JH.png">
+    <link rel="stylesheet" href="./resources/css/uav.css">
+    <style>
+        .second-f,
+        .second-w {
+            padding-left: 30px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- layout admin -->
+    <div class="layui-layout layui-layout-admin">
+        <!-- 添加skin-1类可手动修改主题为纯白，添加skin-2类可手动修改主题为蓝白 -->
+        <!-- header -->
+        <div class="layui-header my-header">
+            <a href="index.html">
+                <div class="my-header-logo">无人机管理</div>
+            </a>
+            <div class="my-header-btn">
+                <button class="layui-btn layui-btn-small btn-nav">
+                    <i class="layui-icon">&#xe65f;</i>
+                </button>
+            </div>
+
+
+            <!-- 顶部右侧添加选项卡监听 -->
+            <ul class="layui-nav my-header-user-nav" lay-filter="side-top-right">
+                <li class="layui-nav-item">
+                    <a class="name" href="javascript:;">
+                        <i class="layui-icon">&#xe629;</i>主题</a>
+                    <dl class="layui-nav-child">
+                        <dd data-skin="0">
+                            <a href="javascript:;">默认</a>
+                        </dd>
+                        <dd data-skin="1">
+                            <a href="javascript:;">纯白</a>
+                        </dd>
+                        <dd data-skin="2">
+                            <a href="javascript:;">蓝白</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+
+                    <a class="name" href="javascript:;">
+                        <img src="static/images/jinghui.png" alt="logo">用户管理</a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a href="javascript:;" href-url="pages/password.html">
+                                <i class="layui-icon">&#xe673;</i>修改密码</a>
+                        </dd>
+                        <!--  <dd><a href="javascript:;" href-url="demo/map.html"><i class="layui-icon">&#xe621;</i>图表</a></dd> -->
+                        <dd>
+                            <a  class="quit">
+                                <i class="layui-icon">&#x1006;</i>退出</a>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+
+        </div>
+        <!-- side -->
+        <div class="layui-side my-side">
+            <div class="layui-side-scroll">
+                <!-- 左侧主菜单添加选项卡监听 -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="side-main">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;">
+                            <i class="layui-icon">&#xe628;</i>菜单目录</a>
+                        <dl class="layui-nav-child">
+
+                            <dd class="first-f">
+                                <a href="javascript:;" href-url="pages/uav/uav.html">
+                                    <i class="layui-icon">&#xe642;</i>无人机登记管理</a>
+
+                            </dd>
+                            <dd class="second-f">
+                                <a href="javascript:;" href-url="pages/uav/uavhand.html">
+                                    <i class="layui-icon">&#xe770;</i>飞手管理</a>
+
+                            </dd>
+                            <dd class="second-f">
+                                <a href="javascript:;" href-url="pages/uav/uavmin.html">
+                                    <i class="layui-icon">&#xe604;</i>无人机管理</a>
+
+                            </dd>
+
+                            <dd>
+                                <a href="javascript:;" href-url="pages/record/record.html">
+                                    <i class="layui-icon">&#xe60b;</i>飞行告警管理</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" href-url="pages/airspace/airspace.html">
+                                    <i class="layui-icon">&#xe715;</i>空域划设管理</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" href-url="pages/district/district.html">
+                                    <i class="layui-icon">&#xe604;</i>电子围栏管理</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" href-url="pages/flight/flight_plan.html">
+                                    <i class="layui-icon">&#xe63c;</i>飞行计划审批</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" href-url="pages/msg/msg_board.html">
+                                    <i class="layui-icon">&#xe63a;</i>消息公告</a>
+                            </dd>
+                            <dd class="first-w">
+                                <a href="javascript:;" href-url="">
+                                    <i class="layui-icon">&#xe612;</i>系统用户管理</a>
+
+                            </dd>
+                            <dd class="second-w">
+                                <a href="javascript:;" href-url="pages/user/user.html">
+                                    <i class="layui-icon">&#xe62a;</i>管理员管理</a>
+
+                            </dd>
+                            <dd class="second-w">
+                                <a href="javascript:;" href-url="pages/flyuser/user.html">
+                                    <i class="layui-icon">&#xe62a;</i>app用户管理</a>
+
+                            </dd>
+                           <!--  <dd class="second-w">
+                               <a href="javascript:;" href-url="pages/user/daile.html">
+                                   <i class="layui-icon">&#xe62a;</i>日志管理</a>
+                           
+                           </dd> -->
+                        </dl>
+                    </li>
+
+                    <!-- <div class="logo">
+                        <img src="./resources/images/logo.png" alt="">
+                        <p>广东军缆信息技术有限公司</p>
+                    </div> -->
+                </ul>
+
+            </div>
+        </div>
+        <!-- body -->
+        <div class="layui-body my-body">
+            <div class="layui-tab layui-tab-card my-tab" lay-filter="card" lay-allowClose="true">
+                <ul class="layui-tab-title">
+                    <li class="layui-this" lay-id="1">
+                        <span>
+                            <i class="layui-icon">&#xe638;</i>管控平台</span>
+                    </li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <iframe id="iframe" src="manager.html" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右键菜单 -->
+        <div class="my-dblclick-box none">
+            <table class="layui-tab dblclick-tab">
+                <tr class="card-refresh">
+                    <td>
+                        <i class="layui-icon">&#x1002;</i>刷新当前标签</td>
+                </tr>
+                <tr class="card-close">
+                    <td>
+                        <i class="layui-icon">&#x1006;</i>关闭当前标签</td>
+                </tr>
+                <tr class="card-close-all">
+                    <td>
+                        <i class="layui-icon">&#x1006;</i>关闭所有标签</td>
+                </tr>
+            </table>
+        </div>
+
+        <script src="resources/jquery/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="resources/frame/layui/layui.all.js"></script>
+        <script type="text/javascript" src="resources/frame/static/js/vip_comm.js"></script>
+        <script type="text/javascript" src="resources/frame/static/js/vip_nav.js"></script>
+
+
+        <!--<script type="text/javascript">
+        layui.use(['layer', 'vip_nav'], function () {
+
+            // 操作对象
+            var layer = layui.layer
+                , vipNav = layui.vip_nav
+                , $ = layui.jquery;
+          
+            // 顶部左侧菜单生成 [请求地址,过滤ID,是否展开,携带参数]
+            vipNav.top_left('resources/json/nav_top_left.json', 'side-top-left', false);
+            // 主体菜单生成 [请求地址,过滤ID,是否展开,携带参数]
+            vipNav.main('resources/json/nav_main.json', 'side-main', true);
+
+            // you code ...
+
+
+        });
+    </script> -->
+        <script>
+            if (localStorage.getItem('userId') == null) {
+                location.href = './index.html';
+            }
+            $('.quit').click(function() {
+                localStorage.removeItem('userId');
+                localStorage.removeItem('token');
+                localStorage.removeItem('userName');
+                location.href="./index.html";
+            })
+            $('.first-f').click(function () {
+                $('.second-f').toggle();
+            })
+
+            $('.first-w').click(function () {
+                $('.second-w').toggle();
+            })
+
+
+
+        </script>
+</body>
+
+</html>
